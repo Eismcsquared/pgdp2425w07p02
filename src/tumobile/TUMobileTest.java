@@ -46,8 +46,8 @@ public class TUMobileTest {
     @Test
     public void fillTankOverflow() {
         double oldFillLevel = car.getFueltank().getFuelLevel();
-        double toFill = (car.getFueltank().getCapacity() - car.getFueltank().getFuelLevel()) * 3 / 2;
-        assertEquals(toFill / 3, car.getFueltank().fill(toFill), 1e-12);
+        double toFill = (car.getFueltank().getCapacity() - car.getFueltank().getFuelLevel()) * 3 / 2 + 1;
+        assertEquals((toFill - 1) / 3 + 1, car.getFueltank().fill(toFill), 1e-12);
         assertEquals(car.getFueltank().getCapacity(), car.getFueltank().getFuelLevel(), 1e-12);
     }
 
@@ -69,8 +69,8 @@ public class TUMobileTest {
     @Test
     public void consumeTankOverflow() {
         double oldFillLevel = car.getFueltank().getFuelLevel();
-        double toFill = oldFillLevel * 3 / 2;
-        assertEquals(toFill / 3, car.getFueltank().consume(toFill), 1e-12);
+        double toFill = oldFillLevel * 3 / 2 + 1;
+        assertEquals((toFill - 1) / 3 + 1, car.getFueltank().consume(toFill), 1e-12);
         assertEquals(0, car.getFueltank().getFuelLevel(), 1e-12);
     }
 
